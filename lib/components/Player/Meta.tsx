@@ -13,7 +13,7 @@ interface MetaProps {
 const Meta = ({ audio, isPlaying, doToggle }: MetaProps) => (
   <div className={styles.meta}>
     <div className={styles.cover}>
-      <img src={audio.cover} alt={audio.title} />
+      <img src={audio.cover} alt={audio.name} />
 
       <div className={styles.control} onClick={doToggle}>
         <div className={styles.wrapper}>
