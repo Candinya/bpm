@@ -128,7 +128,14 @@ const Player = ({
     // 播放器
     <div className={`${styles.wrapper} ${isExpanded ? styles.opened : ""}`}>
       {/*状态切换按钮*/}
-      <OpenToggle toggle={() => setIsExpanded((v) => !v)} />
+      <OpenToggle
+        toggle={() => {
+          // 切换状态
+          setIsExpanded((v) => !v);
+          // 折叠歌单
+          setIsShowingList(false);
+        }}
+      />
 
       {/*主体部分*/}
       <div className={styles.container}>
