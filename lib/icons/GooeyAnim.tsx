@@ -1,6 +1,4 @@
-import { FC, SVGProps } from "preact/compat";
-
-const IconGooeyAnim: FC<SVGProps<SVGElement>> = (props) => {
+const IconGooeyAnim = (props: any) => {
   const css = `.nc-loop-gooey-48-icon-f{--animation-duration:1s}.nc-loop-gooey-48-icon-f :first-child{transform-origin:7px 24px;animation:nc-loop-gooey-48-anim var(--animation-duration) infinite}@keyframes nc-loop-gooey-48-anim{from{transform:translateX(0)}to{transform:translateX(34px)}}`;
 
   return (
