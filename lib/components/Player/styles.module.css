@@ -33,7 +33,7 @@
   align-items: center;
 
   backdrop-filter: blur(10px);
-  background-color: #bbb3;
+  background-color: #888a;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
   .indicator {
@@ -53,5 +53,5 @@
   display: flex;
   flex-direction: column;
   border-top-right-radius: 4px;
-  background-color: #bbb3;
+  background-color: #888a;
 }
