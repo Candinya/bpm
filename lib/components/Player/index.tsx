@@ -88,7 +88,7 @@ const Player = ({ audio }: PlayerProps) => {
     audioRef.current = new Audio();
     audioRef.current.autoplay = false;
     audioRef.current.crossOrigin = "anonymous";
-    audioRef.current.volume = 1.0; // TODO: 持久化状态（存储）
+    audioRef.current.volume = 1.0;
 
     // 绑定事件
     bindAudioEvents(audioRef.current);
