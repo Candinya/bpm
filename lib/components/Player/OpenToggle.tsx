@@ -5,9 +5,9 @@ interface OpenToggleProps {
   toggle: () => void;
 }
 const OpenToggle = ({ toggle }: OpenToggleProps) => (
-  <button type="button" className={styles.toggle} onClick={toggle}>
+  <div className={styles.toggle} onClick={toggle}>
     <IconChevronRight className={styles.indicator} />
-  </button>
+  </div>
 );
 
 export default OpenToggle;
