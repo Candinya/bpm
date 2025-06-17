@@ -14,8 +14,8 @@ export default defineConfig({
     lib: {
       // Could also be a dictionary or array of multiple entry points
       entry: resolve(__dirname, "lib/main.tsx"),
-      name: "BPM",
-      fileName: "bpm",
+      name: "Player",
+      fileName: "player",
       // formats: ['umd']
     },
     copyPublicDir: false,
