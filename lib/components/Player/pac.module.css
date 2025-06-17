@@ -1,10 +1,10 @@
 .pac {
   background-color: white;
-  border-bottom-right-radius: 4px;
-  padding: 8px;
+  border-bottom-right-radius: 0.25rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 0.5rem;
   align-items: center;
 
   .wrapper {
@@ -17,7 +17,7 @@
       flex-grow: 1;
       position: relative;
       cursor: pointer;
-      height: 4px;
+      height: 0.25rem;
 
       .total,
       .loaded,
@@ -45,12 +45,12 @@
 
         > div {
           position: absolute;
-          width: 8px;
-          height: 8px;
-          top: -4px;
-          left: -4px;
+          width: 0.5rem;
+          height: 0.5rem;
+          top: -0.25rem;
+          left: -0.25rem;
           background-color: white;
-          border: 2px solid #555;
+          border: 0.125rem solid #555;
           border-radius: 100%;
           opacity: 0;
           transition: opacity 0.3s;
@@ -71,12 +71,12 @@
 
       .inner {
         display: flex;
-        margin-left: 8px;
+        margin-left: 0.5rem;
 
         .timetext {
-          font-size: 10px;
+          font-size: 0.625rem;
           display: flex;
-          gap: 2px;
+          gap: 0.125rem;
           color: #555;
         }
       }
@@ -84,8 +84,8 @@
   }
 
   .button {
-    width: 14px;
-    height: 14px;
+    width: 0.875rem;
+    height: 0.875rem;
     opacity: 0.5;
     cursor: pointer;
     transition: opacity 0.3s;

@@ -3,11 +3,11 @@
   transition: max-height 0.3s;
   overflow-y: auto;
   scroll-behavior: smooth;
-  border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 0.25rem;
   background-color: #aaa3;
 
   &.open {
-    max-height: 320px;
+    max-height: 20rem;
   }
 
   .content {
@@ -19,8 +19,8 @@
       flex-direction: column;
 
       li {
-        font-size: 12px;
-        padding: 4px 8px;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
         background-color: transparent;
         transition: background-color 0.3s;
         cursor: pointer;
@@ -29,18 +29,18 @@
           display: flex;
           flex-direction: row;
           align-items: center;
-          gap: 8px;
+          gap: 0.5rem;
 
           .icon {
-            width: 8px;
-            height: 8px;
+            width: 0.5rem;
+            height: 0.5rem;
             fill: currentColor;
           }
 
           > div {
             display: flex;
             flex-direction: row;
-            gap: 12px;
+            gap: 0.75rem;
             justify-content: space-between;
             width: 100%;
 
