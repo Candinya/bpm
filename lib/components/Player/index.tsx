@@ -8,8 +8,14 @@ import List from "@/components/Player/List";
 
 interface PlayerProps {
   audio: AudioSingle[];
+  initialPlayingIndex: number;
+  setInitialPlayingIndex: (index: number) => void;
 }
-const Player = ({ audio }: PlayerProps) => {
+const Player = ({
+  audio,
+  initialPlayingIndex,
+  setInitialPlayingIndex,
+}: PlayerProps) => {
   // UI 相关的状态
   const [isExpanded, setIsExpanded] = useState(false);
   const [isShowingList, setIsShowingList] = useState(false);
@@ -19,7 +25,8 @@ const Player = ({ audio }: PlayerProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   // 播放状态
-  const [currentPlayingIndex, setCurrentPlayingIndex] = useState(0);
+  const [currentPlayingIndex, setCurrentPlayingIndex] =
+    useState(initialPlayingIndex);
   const [duration, setDuration] = useState(0);
   const [buffered, setBuffered] = useState(0);
   const [played, setPlayed] = useState(0);
@@ -107,6 +114,9 @@ const Player = ({ audio }: PlayerProps) => {
     if (audio[currentPlayingIndex].url !== audioRef.current.src) {
       audioRef.current.src = audio[currentPlayingIndex].url;
     }
+
+    // 保存设置
+    setInitialPlayingIndex(currentPlayingIndex);
 
     // 确认开始播放
     if (doPlay) {
