@@ -62,11 +62,11 @@
         }
 
         &:hover {
-          background-color: #aaa5;
+          background-color: #38bdf850;
         }
 
         &.active {
-          background-color: #aaaa;
+          background-color: #38bdf870;
         }
       }
     }
