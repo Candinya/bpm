@@ -1,4 +1,4 @@
-import { FC, SVGProps } from "preact-compat";
+import { FC, SVGProps } from "preact/compat";
 
 const IconMusic: FC<SVGProps<SVGElement>> = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>

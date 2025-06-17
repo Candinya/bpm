@@ -1,0 +1,74 @@
+.wrapper {
+  max-height: 0;
+  transition: max-height 0.3s;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  border-bottom-right-radius: 4px;
+  background-color: #aaa3;
+
+  &.open {
+    max-height: 320px;
+  }
+
+  .content {
+    ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+
+      li {
+        font-size: 12px;
+        padding: 4px 8px;
+        background-color: transparent;
+        transition: background-color 0.3s;
+        cursor: pointer;
+
+        > div {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 8px;
+
+          .icon {
+            width: 8px;
+            height: 8px;
+            fill: currentColor;
+          }
+
+          > div {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+            justify-content: space-between;
+            width: 100%;
+
+            span {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+
+              &.name {
+                opacity: 0.8;
+              }
+
+              &.artist {
+                opacity: 0.6;
+                font-weight: 300;
+              }
+            }
+          }
+        }
+
+        &:hover {
+          background-color: #aaa5;
+        }
+
+        &.active {
+          background-color: #aaaa;
+        }
+      }
+    }
+  }
+}

@@ -3,14 +3,16 @@ import { useState, useRef, useEffect } from "preact/hooks";
 import styles from "./styles.module.css";
 import OpenToggle from "./OpenToggle";
 import Meta from "./Meta";
+import ProgressAndControl from "./ProgressAndControl";
+import List from "@/components/Player/List";
 
 interface PlayerProps {
   audio: AudioSingle[];
 }
 const Player = ({ audio }: PlayerProps) => {
   // UI 相关的状态
-  const [isNotCollapsed, setIsNotCollapsed] = useState(false);
-  const [isShowingAudioList, setIsShowingAudioList] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isShowingList, setIsShowingList] = useState(false);
 
   // 播放流程管理
   const [isPlaying, setIsPlaying] = useState(false);
@@ -18,6 +20,9 @@ const Player = ({ audio }: PlayerProps) => {
 
   // 播放状态
   const [currentPlayingIndex, setCurrentPlayingIndex] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [buffered, setBuffered] = useState(0);
+  const [played, setPlayed] = useState(0);
 
   // 播放相关的组件
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -34,6 +39,20 @@ const Player = ({ audio }: PlayerProps) => {
       // 播放
       return nextIndex;
     });
+    setDuration(0);
+    setBuffered(0);
+    setPlayed(0);
+  };
+
+  const bufferProgress = () => {
+    // 缓存了更多的数据，使用最后一个缓存作为结果（简化了，严格来说应该分段显示）
+    let lastBuffered = 0;
+    for (let i = 0; i < audioRef.current.buffered.length; i++) {
+      if (audioRef.current.buffered.end(i) > lastBuffered) {
+        lastBuffered = audioRef.current.buffered.end(i);
+      }
+    }
+    setBuffered(lastBuffered);
   };
 
   // 事件绑定
@@ -56,56 +75,93 @@ const Player = ({ audio }: PlayerProps) => {
       setIsLoading(false);
     });
     ar.addEventListener("ended", playNext);
+    ar.addEventListener("durationchange", (e) => {
+      setDuration(ar.duration);
+    });
+    ar.addEventListener("progress", bufferProgress);
+    ar.addEventListener("timeupdate", (e) => {
+      setPlayed(ar.currentTime);
+    });
   };
 
-  // 初始化
-  useEffect(() => {
-    if (audioRef.current === null) {
-      // 初始化音频组件
-      audioRef.current = new Audio();
-      audioRef.current.autoplay = false;
-      audioRef.current.crossOrigin = "anonymous";
-      audioRef.current.volume = 1.0;
+  const initAudio = () => {
+    audioRef.current = new Audio();
+    audioRef.current.autoplay = false;
+    audioRef.current.crossOrigin = "anonymous";
+    audioRef.current.volume = 1.0; // TODO: 持久化状态（存储）
 
-      // 绑定事件
-      bindAudioEvents(audioRef.current);
-    }
-  }, []);
+    // 绑定事件
+    bindAudioEvents(audioRef.current);
+  };
 
   // 根据 index 变化来做播放切换
   useEffect(() => {
-    if (audioRef.current) {
-      if (audio[currentPlayingIndex].url !== audioRef.current.src) {
-        audioRef.current.src = audio[currentPlayingIndex].url;
-        audioRef.current.play();
-      }
+    let doPlay = true;
+    if (audioRef.current === null) {
+      // 是初始化，只准备而不播放
+      initAudio();
+      doPlay = false;
+    }
+
+    // 替换播放的音频链接
+    if (audio[currentPlayingIndex].url !== audioRef.current.src) {
+      audioRef.current.src = audio[currentPlayingIndex].url;
+    }
+
+    // 确认开始播放
+    if (doPlay) {
+      audioRef.current.play();
     }
   }, [currentPlayingIndex]);
 
   return (
     // 播放器
-    <div className={`${styles.wrapper} ${isNotCollapsed ? styles.opened : ""}`}>
+    <div className={`${styles.wrapper} ${isExpanded ? styles.opened : ""}`}>
       {/*状态切换按钮*/}
-      <OpenToggle doToggle={() => setIsNotCollapsed(!isNotCollapsed)} />
+      <OpenToggle toggle={() => setIsExpanded((v) => !v)} />
 
       {/*主体部分*/}
       <div className={styles.container}>
         {/*元信息和播放暂停控制*/}
         <Meta
           audio={audio[currentPlayingIndex]}
+          isLoading={isLoading}
           isPlaying={isPlaying}
-          doToggle={() => {
-            if (isPlaying) {
-              audioRef.current.pause();
-            } else {
+          toggle={() => {
+            if (audioRef.current.paused) {
               audioRef.current.play();
+            } else {
+              audioRef.current.pause();
             }
           }}
         />
 
         {/*底部进度条和播放顺序*/}
+        <ProgressAndControl
+          duration={duration}
+          loaded={buffered}
+          played={played}
+          seek={(pos) => {
+            if (pos < 0) {
+              pos = 0;
+            } else if (pos > duration) {
+              pos = duration;
+            }
+            setPlayed(pos);
+
+            audioRef.current.currentTime = pos;
+          }}
+          isShowingList={isShowingList}
+          toggleShowingList={() => setIsShowingList((v) => !v)}
+        />
 
         {/*可展开的歌单*/}
+        <List
+          audio={audio}
+          isOpen={isShowingList}
+          currentPlayingIndex={currentPlayingIndex}
+          play={setCurrentPlayingIndex}
+        />
       </div>
     </div>
   );

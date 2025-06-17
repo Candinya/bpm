@@ -1,23 +1,34 @@
 import styles from "./meta.module.css";
-import IconMusic from "../icons/Music";
-import IconUserMusic from "../icons/UserMusic";
-import IconFolderMusic from "../icons/FolderMusic";
-import IconPause from "../icons/Pause";
-import IconPlay from "../icons/Play";
+import IconMusic from "@/icons/Music";
+import IconUserMusic from "@/icons/UserMusic";
+import IconFolderMusic from "@/icons/FolderMusic";
+import IconPause from "@/icons/Pause";
+import IconPlay from "@/icons/Play";
+import IconGooeyAnim from "@/icons/GooeyAnim";
 
 interface MetaProps {
   audio: AudioSingle;
+  isLoading: boolean;
   isPlaying: boolean;
-  doToggle: () => void;
+  toggle: () => void;
 }
-const Meta = ({ audio, isPlaying, doToggle }: MetaProps) => (
+const Meta = ({ audio, isLoading, isPlaying, toggle }: MetaProps) => (
   <div className={styles.meta}>
     <div className={styles.cover}>
       <img src={audio.cover} alt={audio.name} />
 
-      <div className={styles.control} onClick={doToggle}>
+      <div
+        className={styles.control}
+        onClick={() => {
+          if (!isLoading) {
+            toggle();
+          }
+        }}
+      >
         <div className={styles.wrapper}>
-          {isPlaying ? (
+          {isLoading ? (
+            <IconGooeyAnim className={styles.loading} />
+          ) : isPlaying ? (
             <IconPause className={styles.pause} />
           ) : (
             <IconPlay className={styles.play} />

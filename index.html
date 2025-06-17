@@ -32,5 +32,20 @@
           });
         });
     </script>
+
+    <!-- 监测资源占用 -->
+    <script src="https://mrdoob.github.io/stats.js/build/stats.min.js"></script>
+    <script>
+      const stats = new Stats();
+      stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+      document.body.appendChild(stats.dom);
+
+      function animate() {
+        stats.update();
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    </script>
   </body>
 </html>

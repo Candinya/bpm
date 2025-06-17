@@ -1,0 +1,101 @@
+.pac {
+  background-color: white;
+  border-bottom-right-radius: 4px;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+
+    .progress {
+      flex-grow: 1;
+      position: relative;
+      cursor: pointer;
+      height: 4px;
+
+      .total,
+      .loaded,
+      .played {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+      }
+
+      .total {
+        background-color: #ddd;
+        width: 100%;
+      }
+
+      .loaded {
+        background-color: #aaa;
+      }
+
+      .played {
+        background-color: #555;
+      }
+
+      .thumb {
+        position: absolute;
+
+        > div {
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          top: -4px;
+          left: -4px;
+          background-color: white;
+          border: 2px solid #555;
+          border-radius: 100%;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+      }
+
+      &:hover {
+        .thumb > div {
+          opacity: 1;
+        }
+      }
+    }
+
+    .time {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+
+      .inner {
+        display: flex;
+        margin-left: 8px;
+
+        .timetext {
+          font-size: 10px;
+          display: flex;
+          gap: 2px;
+          color: #555;
+        }
+      }
+    }
+  }
+
+  .button {
+    width: 14px;
+    height: 14px;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &.active {
+      opacity: 1;
+    }
+  }
+}
