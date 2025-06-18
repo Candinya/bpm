@@ -4,20 +4,22 @@
   position: fixed;
   bottom: 5rem;
   left: -20rem; /* 能不能用相对值，让 CSS 自己计算，而不是指定？ */
-  transition: all 0.3s cubic-bezier(0.73, 0.08, 0.23, 0.88);
+  transition: all 0.75s;
+  transition-timing-function: cubic-bezier(0.75, 0.24, 0.6, 1.37);
   box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
 
   &.opened {
     left: 0;
+    transition-timing-function: cubic-bezier(0.42, -0.51, 0.23, 0.91);
   }
 }
 
 .toggle {
-  width: 1.25rem;
+  width: 1.5rem;
   height: 3.75rem;
 
   position: absolute;
-  right: -1.25rem; /* 能不能用相对值，让 CSS 自己计算，而不是指定？ */
+  right: -1.5rem; /* 能不能用相对值，让 CSS 自己计算，而不是指定？ */
   top: 1.25rem;
   border: none;
   cursor: pointer;
@@ -26,16 +28,21 @@
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
 
   box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
 
+  .icon,
   .indicator {
-    width: 0.875rem;
-    height: 0.875rem;
-    transition: rotate 0.3s 0.4s; /* 延迟至主动画结束后 */
+    width: 0.75rem;
+    height: 0.75rem;
     fill: currentColor;
+  }
+
+  .indicator {
+    transition: rotate 0.3s 0.85s; /* 延迟至主动画结束后 */
   }
 }
 
