@@ -21,7 +21,7 @@
       padding: 0.25rem 0; /* 扩大一点以更好地点击到，但这会改变元素的高度，所以在下方需要修正 */
 
       .total,
-      .loaded,
+      .buffered,
       .played {
         position: absolute;
         inset: 0;
@@ -34,7 +34,7 @@
         width: 100%;
       }
 
-      .loaded {
+      .buffered {
         background-color: #aaa;
       }
 

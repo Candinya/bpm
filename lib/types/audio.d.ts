@@ -5,3 +5,8 @@ type AudioSingle = {
   album?: string;
   cover?: string;
 };
+
+type AudioBuffered = {
+  start: number;
+  end: number;
+};

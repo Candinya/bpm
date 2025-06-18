@@ -29,7 +29,7 @@ const Player = ({
     initialPlayingIndex < audio.length ? initialPlayingIndex : 0,
   );
   const [duration, setDuration] = useState(0);
-  const [buffered, setBuffered] = useState(0);
+  const [buffered, setBuffered] = useState<AudioBuffered[]>([]);
   const [played, setPlayed] = useState(0);
 
   // 播放相关的组件
@@ -48,19 +48,20 @@ const Player = ({
       return nextIndex;
     });
     setDuration(0);
-    setBuffered(0);
+    setBuffered([]);
     setPlayed(0);
   };
 
   const bufferProgress = () => {
-    // 缓存了更多的数据，使用最后一个缓存作为结果（简化了，严格来说应该分段显示）
-    let lastBuffered = 0;
+    // 缓存了更多的数据
+    const buffered: AudioBuffered[] = [];
     for (let i = 0; i < audioRef.current.buffered.length; i++) {
-      if (audioRef.current.buffered.end(i) > lastBuffered) {
-        lastBuffered = audioRef.current.buffered.end(i);
-      }
+      buffered.push({
+        start: audioRef.current.buffered.start(i),
+        end: audioRef.current.buffered.end(i),
+      });
     }
-    setBuffered(lastBuffered);
+    setBuffered(buffered);
   };
 
   // 事件绑定
@@ -157,7 +158,7 @@ const Player = ({
         {/*底部进度条和播放顺序*/}
         <ProgressAndControl
           duration={duration}
-          loaded={buffered}
+          buffered={buffered}
           played={played}
           seek={(pos) => {
             if (pos < 0) {
