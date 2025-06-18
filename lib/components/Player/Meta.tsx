@@ -1,7 +1,7 @@
 import styles from "./meta.module.css";
 import IconMusic from "@/icons/Music";
-import IconUserMusic from "@/icons/UserMusic";
-import IconFolderMusic from "@/icons/FolderMusic";
+import IconMicrophoneStand from "@/icons/MicrophoneStand";
+import IconCompactDisk from "@/icons/CompactDisk";
 import IconPause from "@/icons/Pause";
 import IconPlay from "@/icons/Play";
 import IconGooeyAnim from "@/icons/GooeyAnim";
@@ -42,11 +42,11 @@ const Meta = ({ audio, isLoading, isPlaying, toggle }: MetaProps) => (
         <span title={audio.name}>{audio.name}</span>
       </li>
       <li>
-        <IconUserMusic className={styles.icon} />
+        <IconMicrophoneStand className={styles.icon} />
         <span title={audio.artist}>{audio.artist}</span>
       </li>
       <li>
-        <IconFolderMusic className={styles.icon} />
+        <IconCompactDisk className={styles.icon} />
         <span title={audio.album}>{audio.album}</span>
       </li>
     </ul>
