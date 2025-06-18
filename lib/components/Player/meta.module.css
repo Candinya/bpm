@@ -21,6 +21,10 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      transition: background-color 0.3s;
+      background-blend-mode: darken;
+      background-color: #0000;
+      border-radius: 0.25rem;
 
       .wrapper {
         opacity: 0.6;
@@ -40,8 +44,11 @@
         }
       }
 
-      &:hover .wrapper {
-        opacity: 1;
+      &:hover {
+        background-color: #0005;
+        .wrapper {
+          opacity: 1;
+        }
       }
     }
   }
