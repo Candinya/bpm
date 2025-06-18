@@ -25,8 +25,9 @@ const Player = ({
   const [isLoading, setIsLoading] = useState(false);
 
   // 播放状态
-  const [currentPlayingIndex, setCurrentPlayingIndex] =
-    useState(initialPlayingIndex);
+  const [currentPlayingIndex, setCurrentPlayingIndex] = useState(
+    initialPlayingIndex < audio.length ? initialPlayingIndex : 0,
+  );
   const [duration, setDuration] = useState(0);
   const [buffered, setBuffered] = useState(0);
   const [played, setPlayed] = useState(0);
