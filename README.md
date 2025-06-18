@@ -70,9 +70,3 @@ import { NewPlayer } from "https://unpkg.com/@candymade/bpm/dist/player.js";
 如果出现样式冲突，可以自己追加覆盖样式，使用挂载点的 ID定位（假如上文提供的挂载点 id 是 player 的话，就是 `#player`）
 
 有想到其他内容（比如追加功能或是修复 bug ）欢迎直接开 PR 。
-
-## 授权
-
-MIT
-
-别拿去卖 :pleading_face:
