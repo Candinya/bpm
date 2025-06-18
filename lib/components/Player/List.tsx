@@ -4,11 +4,12 @@ import IconPlay from "@/icons/Play";
 
 interface ItemProps {
   a: AudioSingle;
+  index: number;
   isOpen: boolean;
   isCurrent: boolean;
   play: () => void;
 }
-const Item = ({ a, isOpen, isCurrent, play }: ItemProps) => {
+const Item = ({ a, index, isOpen, isCurrent, play }: ItemProps) => {
   const liRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
@@ -23,9 +24,10 @@ const Item = ({ a, isOpen, isCurrent, play }: ItemProps) => {
       onClick={play}
       ref={liRef}
     >
-      <div>
+      <div className={styles.line}>
+        <span className={styles.index}>{index + 1}.</span>
         {isCurrent && <IconPlay className={styles.icon} />}
-        <div>
+        <div className={styles.info}>
           <span className={styles.name} title={a.name}>
             {a.name}
           </span>
@@ -52,6 +54,7 @@ const List = ({ audio, isOpen, currentPlayingIndex, play }: ListProps) => (
           <Item
             key={index}
             a={a}
+            index={index}
             isOpen={isOpen}
             isCurrent={currentPlayingIndex === index}
             play={() => play(index)}

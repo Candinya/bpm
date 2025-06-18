@@ -25,11 +25,18 @@
         transition: background-color 0.3s;
         cursor: pointer;
 
-        > div {
+        .line {
           display: flex;
           flex-direction: row;
           align-items: center;
           gap: 0.5rem;
+          width: 100%;
+
+          .index {
+            font-size: 0.6rem;
+            opacity: 0.75;
+            font-weight: 300;
+          }
 
           .icon {
             width: 0.5rem;
@@ -37,12 +44,13 @@
             fill: currentColor;
           }
 
-          > div {
+          .info {
             display: flex;
             flex-direction: row;
             gap: 0.75rem;
             justify-content: space-between;
-            width: 100%;
+            width: 0;
+            flex-grow: 1;
 
             span {
               overflow: hidden;
