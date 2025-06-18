@@ -18,13 +18,15 @@
       position: relative;
       cursor: pointer;
       height: 0.25rem;
+      padding: 0.25rem 0; /* 扩大一点以更好地点击到，但这会改变元素的高度，所以在下方需要修正 */
 
       .total,
       .loaded,
       .played {
         position: absolute;
         inset: 0;
-        height: 100%;
+        top: 0.25rem; /* 修正因为父元素 padding 导致的位置偏移 */
+        height: 0.25rem; /* 需要手动设置，因为如果 100% 的话会把 padding 的部分也包括进去 */
       }
 
       .total {
