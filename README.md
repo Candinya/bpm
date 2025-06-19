@@ -17,10 +17,7 @@
 需要引用样式文件，像这样
 
 ```html
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@candymade/bpm/dist/player.css"
-/>
+<link rel="stylesheet" href="https://unpkg.com/@candymade/bpm/dist/player.css" />
 ```
 
 需要准备一个挂载点，像这样
@@ -61,8 +58,7 @@ import { NewPlayer } from "https://unpkg.com/@candymade/bpm/dist/player.js";
   artist: string; // 艺术家
   album: string; // 专辑
   cover: string; // 封面图片
-}
-[];
+}[];
 ```
 
 理论上也能通过加载 https://unpkg.com/@candymade/bpm/dist/player.umd.cjs 运行，或是通过 npm 安装作为依赖项，但我没有试过，如果有成功的欢迎开 PR 更新这个文档。
