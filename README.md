@@ -66,3 +66,11 @@ import { NewPlayer } from "https://unpkg.com/@candymade/bpm/dist/player.js";
 如果出现样式冲突，可以自己追加覆盖样式，使用挂载点的 ID定位（假如上文提供的挂载点 id 是 player 的话，就是 `#player`）
 
 有想到其他内容（比如追加功能或是修复 bug ）欢迎直接开 PR 。
+
+## 授权
+
+&copy; 2025 Nya Candy 版权所有
+
+授权所有 **不包含商业广告** 的 **个人性质的** 站点（主页/博客/etc.）的免费使用。你可以来和我说一声，或者不说也没事。
+
+同时，我不对您使用的音频数据接口负责，请自行准备（我有一个[项目](https://github.com/Candinya/local-audio-lib)可以提供本地音频文件作为数据接口）。
