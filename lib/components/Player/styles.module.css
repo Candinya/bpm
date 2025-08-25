@@ -4,13 +4,11 @@
   position: fixed;
   bottom: 5rem;
   left: -20rem; /* 能不能用相对值，让 CSS 自己计算，而不是指定？ */
-  transition: all 0.75s;
-  transition-timing-function: cubic-bezier(0.75, 0.24, 0.6, 1.37);
+  transition: all 0.4s;
   box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
 
   &.opened {
     left: 0;
-    transition-timing-function: cubic-bezier(0.42, -0.51, 0.23, 0.91);
   }
 }
 
@@ -42,7 +40,7 @@
   }
 
   .indicator {
-    transition: rotate 0.3s 0.85s; /* 延迟至主动画结束后 */
+    transition: rotate 0.3s 0.5s; /* 延迟至主动画结束后 */
   }
 }
 
