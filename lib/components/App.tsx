@@ -1,5 +1,4 @@
 import Player from "@/components/Player";
-import { useEffect, useState } from "preact/hooks";
 
 interface AppProps {
   audio: AudioSingle[];
