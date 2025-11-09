@@ -27,6 +27,7 @@ const App = ({ audio }: AppProps) => {
       initialPlayingIndex={readConfig().playingIndex}
       setInitialPlayingIndex={(i) =>
         saveCfg({
+          // ...readConfig(), // 暂时配置只有一项所以不需要这个
           playingIndex: i,
         })
       }

@@ -1,3 +1,3 @@
 type Config = {
-  playingIndex: number;
+  playingIndex: number; // 播放到第几首歌
 };
