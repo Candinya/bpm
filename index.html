@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>BPM</title>
+    <style>
+      html {
+        height: 100%;
+      }
+
+      body {
+        height: 400%;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Module 调用法 -->
+    <script type="module">
+      import { NewPlayer } from "/lib/main.ts";
+
+      document.title = "BPM (Loading...)";
+
+      fetch("https://music.candinya.com/index")
+        .then((res) => res.json())
+        .then((data) => {
+          NewPlayer({
+            el: document.getElementById("root"),
+            audio: data,
+          });
+          document.title = "BPM 🎵";
+        });
+    </script>
+
+    <!-- 监测资源占用 -->
+    <script src="https://mrdoob.github.io/stats.js/build/stats.min.js"></script>
+    <script>
+      const stats = new Stats();
+      stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+      document.body.appendChild(stats.dom);
+
+      function animate() {
+        stats.update();
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    </script>
+  </body>
+</html>
