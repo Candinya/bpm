@@ -2,7 +2,6 @@
 <html lang="zh">
   <head>
     <meta charset="UTF-8" />
-    <!--    <link rel="icon" type="image/svg+xml" href="/vite.svg" />-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
     <title>BPM</title>
@@ -23,6 +22,8 @@
     <script type="module">
       import { NewPlayer } from "/lib/main.tsx";
 
+      document.title = "BPM (Loading...)";
+
       fetch("https://music.candinya.com/index")
         .then((res) => res.json())
         .then((data) => {
@@ -30,6 +31,7 @@
             el: document.getElementById("root"),
             audio: data,
           });
+          document.title = "BPM 🎵";
         });
     </script>
 
