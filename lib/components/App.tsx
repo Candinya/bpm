@@ -4,7 +4,7 @@ interface AppProps {
   audio: AudioSingle[];
 }
 const App = ({ audio }: AppProps) => {
-  const readConfig = (): Config => {
+  const readCfg = (): Config => {
     const cfg = localStorage.getItem("bpm");
     if (!cfg) {
       // 返回默认设置
@@ -23,7 +23,7 @@ const App = ({ audio }: AppProps) => {
   return (
     <Player
       audio={audio}
-      initialPlayingIndex={readConfig().playingIndex}
+      initialPlayingIndex={readCfg().playingIndex}
       setInitialPlayingIndex={(i) =>
         saveCfg({
           // ...readConfig(), // 暂时配置只有一项所以不需要这个
