@@ -75,6 +75,7 @@
         fill: currentColor;
         justify-self: center;
         align-self: center;
+        flex-shrink: 0;
       }
 
       span {
