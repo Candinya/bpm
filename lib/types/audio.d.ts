@@ -4,6 +4,7 @@ type AudioSingle = {
   artist?: string;
   album?: string;
   cover?: string;
+  theme?: string;
 };
 
 type AudioBuffered = {

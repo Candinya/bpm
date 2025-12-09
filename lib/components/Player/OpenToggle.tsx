@@ -4,9 +4,16 @@ import IconMusicNote from "@/icons/MusicNote";
 
 interface OpenToggleProps {
   toggle: () => void;
+  themeColor: string | null;
 }
-const OpenToggle = ({ toggle }: OpenToggleProps) => (
-  <div className={styles.toggle} onClick={toggle}>
+const OpenToggle = ({ toggle, themeColor }: OpenToggleProps) => (
+  <div
+    className={styles.toggle}
+    onClick={toggle}
+    style={{
+      backgroundColor: themeColor,
+    }}
+  >
     <IconMusicNote className={styles.icon} />
     <IconChevronRight className={styles.indicator} />
   </div>

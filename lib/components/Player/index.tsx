@@ -20,6 +20,9 @@ const Player = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const [isShowingList, setIsShowingList] = useState(false);
 
+  // 主题颜色
+  const [themeColor, setThemeColor] = useState(null);
+
   // 播放流程管理
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -117,6 +120,14 @@ const Player = ({
       audioRef.current.src = audio[currentPlayingIndex].url;
     }
 
+    // 更新主题颜色
+    //   使用 color-mix 来实现颜色混合。 #888a 是这些组件的默认背景颜色，在此基础上混色。
+    setThemeColor(
+      audio[currentPlayingIndex].theme
+        ? `color-mix(in oklab, ${audio[currentPlayingIndex].theme} 30%, #888a 50%)`
+        : null,
+    );
+
     // 保存设置
     setInitialPlayingIndex(currentPlayingIndex);
 
@@ -137,10 +148,16 @@ const Player = ({
           // 折叠歌单
           setIsShowingList(false);
         }}
+        themeColor={themeColor}
       />
 
       {/*主体部分*/}
-      <div className={styles.container}>
+      <div
+        className={styles.container}
+        style={{
+          backgroundColor: themeColor,
+        }}
+      >
         {/*元信息和播放暂停控制*/}
         <Meta
           audio={audio[currentPlayingIndex]}
