@@ -49,7 +49,7 @@ import { NewPlayer } from "https://unpkg.com/@candymade/bpm/dist/player.js";
 })();
 ```
 
-音乐列表数据格式长这样（注意是一个数组）
+音乐列表数据格式长这样（注意是一个数组），基本和 APlayer 的一致，可以通用。
 
 ```ts
 {
@@ -58,6 +58,7 @@ import { NewPlayer } from "https://unpkg.com/@candymade/bpm/dist/player.js";
   artist: string; // 艺术家
   album: string; // 专辑
   cover: string; // 封面图片
+  theme: string; // 歌曲的主题颜色（可选）
 }[];
 ```
 
